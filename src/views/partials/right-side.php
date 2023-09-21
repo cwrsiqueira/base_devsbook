@@ -6,8 +6,9 @@
         </div>
     </div>
     <div class="box-body">
-        <a href=""><img src="<?= $base; ?>/media/sponsors/samet.jpg" /></a>
-        <a href=""><img src="<?= $base; ?>/media/sponsors/shevtsova.jpg" /></a>
+        <a href=""><img src="<?= $base; ?>/media/sponsors/sponsor1.png" /></a>
+        <a href=""><img src="<?= $base; ?>/media/sponsors/sponsor2.png" /></a>
+        <a href=""><img src="<?= $base; ?>/media/sponsors/sponsor3.png" /></a>
     </div>
 </div>
 <div class="box">

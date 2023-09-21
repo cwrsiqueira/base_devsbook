@@ -20,6 +20,9 @@
                             <div class="tab-item <?= (!empty($_GET['to']) && $_GET['to'] == 'following') ? 'active' : ''; ?>" data-for="following">
                                 Seguindo
                             </div>
+                            <div class="tab-item <?= (!empty($_GET['to']) && $_GET['to'] == 'searching') ? 'active' : ''; ?>" data-for="searching">
+                                Todos os usuários
+                            </div>
                         </div>
                         <div class="tab-content">
                             <div class="tab-body" data-item="followers">
@@ -27,7 +30,7 @@
                                 <div class="full-friend-list">
 
                                     <?php foreach ($user->followers as $item) : ?>
-                                        <div class="friend-icon">
+                                        <div class="friend-icon" title="<?= $item->name ?>">
                                             <a href="<?= $base; ?>/perfil/<?= $item->id ?>">
                                                 <div class="friend-icon-avatar">
                                                     <img src="<?= $base; ?>/media/avatars/<?= $item->avatar ?? 'default.jpg'; ?>" />
@@ -46,7 +49,25 @@
 
                                 <div class="full-friend-list">
                                     <?php foreach ($user->followings as $item) : ?>
-                                        <div class="friend-icon">
+                                        <div class="friend-icon" title="<?= $item->name ?>">
+                                            <a href="<?= $base; ?>/perfil/<?= $item->id ?>">
+                                                <div class="friend-icon-avatar">
+                                                    <img src="<?= $base; ?>/media/avatars/<?= $item->avatar ?? 'default.jpg'; ?>" />
+                                                </div>
+                                                <div class="friend-icon-name">
+                                                    <?= $item->name; ?>
+                                                </div>
+                                            </a>
+                                        </div>
+                                    <?php endforeach; ?>
+                                </div>
+
+                            </div>
+                            <div class="tab-body" data-item="searching">
+
+                                <div class="full-friend-list">
+                                    <?php foreach ($user->allUsers as $item) : ?>
+                                        <div class="friend-icon" title="<?= $item->name ?>">
                                             <a href="<?= $base; ?>/perfil/<?= $item->id ?>">
                                                 <div class="friend-icon-avatar">
                                                     <img src="<?= $base; ?>/media/avatars/<?= $item->avatar ?? 'default.jpg'; ?>" />

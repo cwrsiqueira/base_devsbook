@@ -78,9 +78,39 @@ class ProfileController extends Controller {
             $isFollowing = UserHandler::isFollowing($this->loggedUser->id, $user->id);
         }
 
+        $users = UserHandler::searchUser('');
+
         $this->render('profile_friends', [
             'loggedUser' => $this->loggedUser,
             'user' => $user,
+            'users' => $users,
+            'isFollowing' => $isFollowing,
+        ]);
+    }
+
+    public function search_friends($atts = [])
+    {
+        $id = $this->loggedUser->id;
+        if (!empty($atts['id'])) {
+            $id = $atts['id'];
+        }
+
+        $user = UserHandler::getUser($id, true);
+        if (!$user) {
+            $this->redirect('/');
+        }
+
+        $isFollowing = false;
+        if ($user->id != $this->loggedUser->id) {
+            $isFollowing = UserHandler::isFollowing($this->loggedUser->id, $user->id);
+        }
+
+        $users = UserHandler::searchUser('');
+
+        $this->render('profile_search_friends', [
+            'loggedUser' => $this->loggedUser,
+            'user' => $user,
+            'users' => $users,
             'isFollowing' => $isFollowing,
         ]);
     }

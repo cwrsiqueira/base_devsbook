@@ -6,7 +6,7 @@ use \src\models\UserRelation;
 use \src\handlers\PostHandler;
 
 class UserHandler {
-    
+
     public static function checkLogin() {
 
         if(!empty($_SESSION['token'])) {
@@ -80,6 +80,7 @@ class UserHandler {
             if($full) {
                 $user->followers = [];
                 $user->followings = [];
+                $user->allUsers = [];
                 $user->photos = [];
 
                 // Followers
@@ -106,6 +107,18 @@ class UserHandler {
                     $newUser->avatar = $userData['avatar'];
 
                     $user->followings[] = $newUser;
+                }
+
+                // All users
+                $allUsers = User::select()->get();
+                foreach ($allUsers as $userData) {
+
+                    $newUser = new User();
+                    $newUser->id = $userData['id'];
+                    $newUser->name = $userData['name'];
+                    $newUser->avatar = $userData['avatar'];
+
+                    $user->allUsers[] = $newUser;
                 }
 
                 // Photos
