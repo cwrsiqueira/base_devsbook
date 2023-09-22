@@ -28,7 +28,7 @@
                 </div>
             <?php endif; ?>
         </div>
-        <div class="feed-item-body mt-10 m-width-20">,
+        <div class="feed-item-body mt-10 m-width-20">
             <?php switch ($data->type):
                 case 'text': ?>
                     <?= nl2br($data->body); ?>
